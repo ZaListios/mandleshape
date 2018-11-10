@@ -1,0 +1,36 @@
+float n = 6;
+void setup()
+{
+  size(700,400);
+  background(0,0,0);
+  stroke(255);
+}
+void draw()
+{
+  for (float py = 0; py <= height; py++)
+  {
+    for (float px = 0; px <= width; px++)
+    {
+      float x0   = (px - 500) / 200;
+      float y0   = (py - 200) / 200;
+      float x    = 0.0;
+      float y    = 0.0;
+      float itr  = 0.0;
+      float mItr = 1000.0;
+      float temp = 0.0;
+
+      while(x * x + y * y < 2 * 2 && itr < mItr)
+      {
+        temp = pow(x*x+y*y,n/2)*cos(n*atan2(y,x)) + x0;
+        y = pow(x*x+y*y,n/2)*sin(n*atan2(y,x)) + y0;
+        x = temp;
+        //temp = x * x - y * y + x0;
+        //y = 2 * x * y + y0;
+        //x = temp;
+        //itr++;
+      }
+      stroke(itr*4);
+      point(px,py);
+    }
+  }
+}
